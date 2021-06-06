@@ -1,0 +1,11 @@
+sudo: required
+services: 
+- docker
+#some series of things to happen before tests run
+before_install: 
+- docker build -t yoyowu1000/docker-react-course -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true yoyowu1000/docker-react-course npm run test -- --coverage
+
+language: generic
