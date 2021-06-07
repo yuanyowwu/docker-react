@@ -19,7 +19,3 @@ deploy:
   bucket_path: docker-react
   on:
     branch: master
-env:
-  global:
-  
-  - 
