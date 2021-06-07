@@ -1,26 +1,25 @@
 sudo: required
-services: 
+services:
 - docker
-#some series of things to happen before tests run
-before_install: 
+before_install:
 - docker build -t yoyowu1000/docker-react-course -f Dockerfile.dev .
-
 script:
-  - docker run -e CI=true yoyowu1000/docker-react-course npm run test -- --coverage
-
+- docker run -e CI=true yoyowu1000/docker-react-course npm run test -- --coverage
 language: generic
-
-deploy: 
+deploy:
   provider: elasticbeanstalk
-  access_key_id: 
-    secure: "Encrypted <access-key-id>=sz3nYCpgNTHOsM0vlILdnP9/nPBYlXB2bUjvjTX5V7E7SghBevoVWU78lMReQLCj2ZCPwmzskZBLqZA+eeCNq3BB/KMM55lOT4SQrjqtrk9m2xQw9NcB9+YV7Wy03AYEpv2RdcuxxwPpj6pbZlN9lx0RtuD20zVSt0DAE4qHnrGkSM1vUxnXPC/MmMMgwLa7IJNpOvYyEtGu9ccfjM6WAHDsBtFA63vgqDIUURqUuNB7FXFGBFheEJdPDhRffPq77aWg/JaI09xr10t8Af/9dkY4r0ZpvRTzyv0V1dNsMGgOWON4oGMXirhS9QA/ORTWsD1r0CgUmQmW2QEWFTdZCbuiK+aw88Tvturu4exa+jaCVsK2Mf9RUOWVytCFjObjtk9QLOAhZxNGVl4kpXK8o0iTAm+KvSvkeOAkZp1n4zHd9ZxhxOPxcz9MSQHHQy6j1mnNCZIm0P7tUxe/bMZtyRh2SIbisJBPuUh4wAfWWTN9gyXGO0AT5d2OsTtgMROLQQZKUGsoxa7wBzcJ4wc9sv9VK47dwHWMQ18GtEuTUGFlngEE+1xh0nUtwiwle+fPpQX8GIx7z5YOto96Fae0GRetTOmbgln+Z+0stvFSDlcNS0k3SsMaQm+TP1armzyXmNY25o/n0FCUKrCyCjwVIgWHlmm4gLnQxZtNmp1xTyQ="
-  secret_access_key: 
-    secure: "Encypted <secret-access-key>=X70lu6U3JM/bCIHqjCFaz4tfUXwTA1op909sn8Osw54yUiRanbw394Dr59P21OIoDed2yNGCUSQUP4402Mcd+vYXlpJ39gdvrJD7TwBAkgN2LZYV69fT5frHTKt64KslHUT5GgYtb0+VQ4lw0e2HQqWXWaVWwQmp4HcbYDqMk+m/pXHrD8lxqNMz44GIvvH4yH9EE5ENu7vXBRgaayD/nNJgaFLhsPMsB3JcjPfCmh0IKiTAFVUZVh84fJAgBitKYekS9mN24FfNR3grlzWQVWYsz9ED5+tv5K7eoQl3zdVzK6crzEn8mSSu6pmFe/Fa8Ig8uDFjMPSGPW5z7e+hrh5L5qyfgrRXRkZR/5oSjsJ5qUc5nl0QYOqFp3mRVewC/ccf8NnA7R5vqRd0Qi8+k3Xkxh8h0EHs15+0iYEH05FbbntZ/FNo3GGr5oDrKS7eieYtGQXnL7W2JyrKesWSc67Gdv+1UBY+yIVFdhtZihKUR3chC/gGrxPKWf0PCXL1z+VlAtWz5FU4Lcv71eNhux6IeEOPx6RaYcjnzPfWs5vbeJiszSXol00T7Jnxvnyw1yd1dQX+6QCd1W2EE4xmNIHFWw1HBq7laR0sp84jiDaUEF0/geZe2U4nhE055tXRN2p2HP6NgkBx0djyPkWjr1Gl6CFnnvwfdV9uin9DUAY="
-  region: "us-east-1"
-  app: "docker-react"
-  env: "Dockerreact-env"
-  bucket_name: "elasticbeanstalk-us-east-1-871201622408" #s3 bucket
-  bucket_path: "docker-react"
-  on: 
+  access_key_id:
+    secure: dYXFgn2c/GsF/yF0Z1vz4PV0mIv9jNG6GdsZ/GGUHAnyPV99ZSpZEcb+az9eb1Ji71xfxIUIy5rfqDM8lb93hl0j2HnLDfwW3RkD71mbbgpSZx/NQhkiVpxEn3aHYTwfu3Jop5Q853HXYmcObixMnjbOKZ6Fy5fQEtNbX2e+X41xjIsxUHbb8EFHCD8oEm0YFkozzFLF5zdYV77QXJauTOOoa9eTI0RmRpdUH34FSdCCkeoX0sL63POEzfUQHJcmAn9kJejfb5l34UPuWZ5FMMzwcnUQB7DWKBwnPriQKG58slPTdTa5Mqp7NxE+y3r91ZNW0jchkDJTTRaZhU2N1OJ51BaCpi0CTcKMfdoOD8kiwA1hKu2HkQE9SUX+3XzydPIxre8mzxiEEowFvSt9kpHazd8bGym+oSzHGz5i5Z0YBRZed2SOgZhOg3NQQkoP44WIww0E5uCy6STn9idMNIZwKmf34FfvKR+KyxuldQKQ+KlnpaSdE5JhoHhAP7syhgyCDBDDEt6cHXMOb0ImZplpi7IowV1xX6YBw1D6lpAIV/WLCliiCKWMLBxEazN/cit9DcGHLCqoluSzjTdSHFmjmk8PqIw96U5HBxvN7N8nKrV7qXov4I10BdnbNtBb9ZzUtZnK60IZUswdJT+H+wbY1gsfZ5ciVdPo+dISwUE=
+  secret_access_key:
+    secure: X+kqXY6Y/5k8gybTHZGWPJ9+00mJJtlnvCENV/QkuitVKEAAZp3QTwrMIoSfJe9ibfYOEHJibLbZB0ZNEioMRSsqqVWfZv3FFmHkjhDXJInGtEWp2sdLsrGNuIEU2PLWj3YDv/E/OHlVYOvcD8ry1+tf2vNER1XkWnmKrxGkQIVs4HzHsM1fX5YtQFWLEAPWCt78/qPkke3UeRgoT7p58oK3ixpwzH4893E7kkcCKPEldnhCE4heJqc/JacOsS0QMaBXd/vQSXef3njkK/a81hY2f/LbKJaH2+OHUkbI68hENM3pO6DB/9+BF+ZL0YNiI83elTE7Q8zT5oKtzYvFX8JGmxaLTkWowVDRD824snK6nilDnd6jKqhXVqKLnX2kYmm2pDACXgzshFeK8D9D5GOWBSmh2gbsIilrXzg6b71TqJjYhXCPgixzrJLVqq19wzvOYIxiz/9jD+nYI1eZD4xFuzyMDh96hkPjs+Stq1hfIV+609xECqe/yPVHk/4F75/ftN8Ph0t+1iLoHINPpA8Jz+AoQEbKg6DTYilV6KYWHELMHK8WZZYYkNBcguBuvrkgRYIPW1WZLvI3qHEIC+tXF/9vfLbwCkmCjTcVZsFmb3iFCsowDl4nL+YgGgM6dKFowI6A09AVtm/QaHJBOrD+f4xv+yu6Hc/l1YNXvt8=
+  region: us-east-1
+  app: docker-react
+  env: Dockerreact-env
+  bucket_name: elasticbeanstalk-us-east-1-871201622408
+  bucket_path: docker-react
+  on:
     branch: master
-
+env:
+  global:
+  
+  - 
