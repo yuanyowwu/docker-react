@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Yoyo is the best 
+          Yoyo is the best on the Feature Branch as well. 
         </p>
         <a
           className="App-link"
